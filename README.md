@@ -12,6 +12,9 @@ Run `npm run build` to build x64 version for Electron.
 
 See example in test.js. Run with `node test.js`
 
+## Referrences
+
 Base on the following resources:
 
 * https://github.com/paulcbetts/node-system-idle-time
+* http://stackoverflow.com/questions/10740143/get-current-active-window-title-in-c

@@ -1,6 +1,6 @@
 {
   "name": "@toantk911/system-api",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "Returns system idle time in miliseconds and current active window",
   "main": "addon.js",
   "scripts": {
