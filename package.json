@@ -5,7 +5,8 @@
   "main": "addon.js",
   "scripts": {
     "test": "node test.js",
-    "install": "node-gyp rebuild"
+    "rebuild": "node-gyp rebuild",
+    "build": "node-gyp rebuild --target=1.4.4 --arch=x64 --dist-url=https://atom.io/download/atom-shell"
   },
   "repository": {
     "type": "git",

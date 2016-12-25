@@ -7,3 +7,5 @@
 #endif
 
 uint32_t SystemIdleTime(void);
+
+char* SystemActiveWindow(void);

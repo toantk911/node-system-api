@@ -9,6 +9,7 @@ class IdleTime {
 public:
   static void Init(Handle<Object> exports);
   static NAN_METHOD(GetIdleTime);
+  static NAN_METHOD(GetActiveWindow);
 };
 
 #endif

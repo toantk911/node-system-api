@@ -11,8 +11,17 @@ NAN_METHOD(IdleTime::GetIdleTime) {
   info.GetReturnValue().Set(idle);
 }
 
-void IdleTime::Init(Handle<Object> exports) {
-  Nan::SetMethod(exports, "getIdleTime", IdleTime::GetIdleTime);
+NAN_METHOD(IdleTime::GetActiveWindow) {
+  Nan::HandleScope scope;
+
+  char* title;
+  title = SystemActiveWindow();
+  info.GetReturnValue().Set(Nan::New<String>(title, strlen(title)).ToLocalChecked());
 }
 
-NODE_MODULE(system_idle_time, IdleTime::Init)
+void IdleTime::Init(Handle<Object> exports) {
+  Nan::SetMethod(exports, "getIdleTime", IdleTime::GetIdleTime);
+  Nan::SetMethod(exports, "getActiveWindow", IdleTime::GetActiveWindow);
+}
+
+NODE_MODULE(system_api, IdleTime::Init)

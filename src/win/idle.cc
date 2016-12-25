@@ -14,3 +14,14 @@ uint32_t SystemIdleTime(void) {
 	uint32_t IdleTime = (uint32_t)((tickCount - (uint64_t)lif.dwTime));
 	return IdleTime;
 }
+
+char* SystemActiveWindow(void)  {
+    HWND foreground;
+    char wnd_title[256];
+    foreground = GetForegroundWindow();
+    if (foreground)
+    {
+      GetWindowText(foreground, wnd_title, 256);
+    }
+    return wnd_title;
+  }
