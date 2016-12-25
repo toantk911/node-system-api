@@ -1,6 +1,6 @@
 {
   "targets": [{
-    "target_name": "system_idle_time",
+    "target_name": "system_api",
     "sources": [
       "src/module.cc"
     ],

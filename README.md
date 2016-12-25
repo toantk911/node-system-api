@@ -1,7 +1,5 @@
-A native node addon for obtaining system idle time in seconds.
+A native node addon for obtaining system idle time in miliseconds and current active window.
 
-OS implementations derived from the following resources:
+Base on the following resources:
 
-* http://www.danandcheryl.com/2010/06/how-to-check-the-system-idle-time-using-cocoa
-* https://github.com/jojobyte/idlerun
-* https://github.com/rosedu/Pidgin/blob/master/pidgin/gtkidle.c
+* https://github.com/paulcbetts/node-system-idle-time
