@@ -18,3 +18,4 @@ Base on the following resources:
 
 * https://github.com/paulcbetts/node-system-idle-time
 * http://stackoverflow.com/questions/10740143/get-current-active-window-title-in-c
+* http://suanfazu.com/t/get-the-title-of-the-current-active-window-document-in-mac-os-x/9485/3
