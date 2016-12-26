@@ -3,7 +3,8 @@
 
 using namespace v8;
 
-NAN_METHOD(IdleTime::GetIdleTime) {
+NAN_METHOD(IdleTime::GetIdleTime)
+{
   Nan::HandleScope scope;
 
   uint32_t idle;
@@ -11,15 +12,17 @@ NAN_METHOD(IdleTime::GetIdleTime) {
   info.GetReturnValue().Set(idle);
 }
 
-NAN_METHOD(IdleTime::GetActiveWindow) {
+NAN_METHOD(IdleTime::GetActiveWindow)
+{
   Nan::HandleScope scope;
 
-  char* title;
+  char *title;
   title = SystemActiveWindow();
   info.GetReturnValue().Set(Nan::New<String>(title, strlen(title)).ToLocalChecked());
 }
 
-void IdleTime::Init(Handle<Object> exports) {
+void IdleTime::Init(Handle<Object> exports)
+{
   Nan::SetMethod(exports, "getIdleTime", IdleTime::GetIdleTime);
   Nan::SetMethod(exports, "getActiveWindow", IdleTime::GetActiveWindow);
 }

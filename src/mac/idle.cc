@@ -37,7 +37,7 @@ int32_t SystemIdleTime(void)
   return idlesecs;
 }
 
-char* SystemIdleTime(void)
+char *SystemActiveWindow(void)
 {
   // Get the process ID of the frontmost application.
   NSRunningApplication *app = [[NSWorkspace sharedWorkspace]
@@ -72,8 +72,7 @@ char* SystemIdleTime(void)
 
     // Finally, get the title of the frontmost window.
     CFStringRef title = NULL;
-    AXError result = AXUIElementCopyAttributeValue(window, kAXTitleAttribute,
-                                                   (CFTypeRef *)&title);
+    AXError result = AXUIElementCopyAttributeValue(window, kAXTitleAttribute, (CFTypeRef *)&title);
 
     // At this point, we don't need window and appElem anymore.
     CFRelease(window);
@@ -86,29 +85,30 @@ char* SystemIdleTime(void)
     }
 
     // Success! Now, do something with the title, e.g. copy it somewhere.
-    char* buffer = CFStringCopyUTF8String(title);
+    char *buffer = CFStringCopyUTF8String(title);
 
     // Once we're done with the title, release it.
     CFRelease(title);
 
     return buffer;
   }
+}
 
-  char* CFStringCopyUTF8String(CFStringRef aString)
+char *CFStringCopyUTF8String(CFStringRef aString)
+{
+  if (aString == NULL)
   {
-    if (aString == NULL)
-    {
-      return NULL;
-    }
-
-    CFIndex length = CFStringGetLength(aString);
-    CFIndex maxSize =
-        CFStringGetMaximumSizeForEncoding(length, kCFStringEncodingUTF8) + 1;
-    char *buffer = (char *)malloc(maxSize);
-    if (CFStringGetCString(aString, buffer, maxSize,
-                           kCFStringEncodingUTF8))
-    {
-      return buffer;
-    }
     return NULL;
   }
+
+  CFIndex length = CFStringGetLength(aString);
+  CFIndex maxSize =
+      CFStringGetMaximumSizeForEncoding(length, kCFStringEncodingUTF8) + 1;
+  char *buffer = (char *)malloc(maxSize);
+  if (CFStringGetCString(aString, buffer, maxSize,
+                         kCFStringEncodingUTF8))
+  {
+    return buffer;
+  }
+  return NULL;
+}

@@ -8,4 +8,4 @@
 
 uint32_t SystemIdleTime(void);
 
-char* SystemActiveWindow(void);
+char *SystemActiveWindow(void);

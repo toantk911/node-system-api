@@ -6,22 +6,34 @@
 #include <stdio.h>
 #include <windows.h>
 
-uint32_t SystemIdleTime(void) {
-	LASTINPUTINFO lif;
-	lif.cbSize = sizeof(lif);
-	if (!GetLastInputInfo(&lif)) return -1;
-	uint64_t tickCount = GetTickCount64();
-	uint32_t IdleTime = (uint32_t)((tickCount - (uint64_t)lif.dwTime));
-	return IdleTime;
+uint32_t SystemIdleTime(void)
+{
+  LASTINPUTINFO lif;
+  lif.cbSize = sizeof(lif);
+  if (!GetLastInputInfo(&lif))
+    return -1;
+  uint64_t tickCount = GetTickCount64();
+  uint32_t IdleTime = (uint32_t)((tickCount - (uint64_t)lif.dwTime));
+  return IdleTime;
 }
 
-char* SystemActiveWindow(void)  {
-    HWND foreground;
-    char wnd_title[256];
-    foreground = GetForegroundWindow();
-    if (foreground)
+char *SystemActiveWindow(void)
+{
+  // Get active app name
+  DWORD maxPath = 1024;
+  TCHAR buffer[1024];
+
+  HWND fg = GetForegroundWindow();
+  if (fg)
+  {
+    DWORD pid;
+    GetWindowThreadProcessId(fg, &pid);
+    HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, pid);
+    if (hProcess)
     {
-      GetWindowText(foreground, wnd_title, 256);
+      BOOL ret = QueryFullProcessImageName(hProcess, 0, buffer, &maxPath);
+      CloseHandle(hProcess);
     }
-    return wnd_title;
   }
+  return buffer;
+}
